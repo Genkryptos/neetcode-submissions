@@ -1,0 +1,18 @@
+class Solution {
+    public boolean isValid(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+        for(char c :s.toCharArray()){
+            if(c == '{' || c == '[' || c == '('){
+                stack.push(c);
+            }else{
+                if(stack.isEmpty())
+                    return false;
+                char o = stack.peek();
+                if((c == ']' && o !='[') || (c == '}' && o !='{') || (c == ')' && o !='('))
+                    return false;
+                stack.pop();    
+            }
+        }
+        return stack.isEmpty();
+    }
+}
